@@ -1,0 +1,3 @@
+v1:no anda
+v2:anda para 1 salida
+v3:varias salidas
