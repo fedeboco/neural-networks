@@ -1,16 +1,18 @@
+%Federico P茅rez Boco 96777 - Redes Neuronales
+
 close all
 clear all
 
-%% Configuraci髇
-N = 2000; %nro de puntos por dimensi髇
+%% Configuraci贸n
+N = 2000; %nro de puntos por dimensi贸n
 Nn = 20; %nro de neuronas
 n = 0.1; %cte aprendizaje
 s_iter = 300; %iteraciones con el mismo sigma
 s0 = 20; %sigma inicial
 sf = 5; %sigma final
-iMAX = N/s_iter; %cant. m醲ima de iteraciones
+iMAX = N/s_iter; %cant. m谩xima de iteraciones
 
-%% Genero distribuci髇 uniforme en c韗culo unitario
+%% Genero distribuci贸n uniforme en c铆rculo unitario
 %http://mathworld.wolfram.com/DiskPointPicking.html
 
 %circulo
@@ -35,13 +37,13 @@ end
 figure
 scatter(x,y,'.g')
 
-%% Entreno matriz de pesos sin醦ticos
+%% Entreno matriz de pesos sin谩pticos
 
 wx = 2*rand(Nn,Nn)-1;
 wy = 2*rand(Nn,Nn)-1;
 s = logspace(log10(sf), log10(s0), iMAX + 1);	
 s = fliplr(s);
-t = 0; %iteraci髇
+t = 0; %iteraci贸n
 is = 0;
 ix = 1:Nn;
 iy = 1:Nn;
@@ -56,7 +58,7 @@ for m = 1:N
     %busco ganadora
     d = sqrt(((abs(x(m)-wx)).^2) + ((abs(y(m)-wy)).^2)); % distancia
     [Igan, Jgan] = find(d==min(min(d)));
-    G = [Igan(1) Jgan(1)]; %ganadora, (1) por si hay m醩 de 1 m韓imo
+    G = [Igan(1) Jgan(1)]; %ganadora, (1) por si hay m谩s de 1 m铆nimo
     
     %actualizo vecindad
     for i = 1 : Nn
@@ -93,7 +95,7 @@ plot(W{1,1},  W{1,2}, 'r', 'LineWidth', 1)
 plot(W{1,1}', W{1,2}','r', 'LineWidth', 1)
 plot(W{1,1},  W{1,2}, 'ok');
 axis([-1 1 -1 1])
-title('Primera iteraci髇');
+title('Primera iteraci贸n');
 xlabel('w_x')
 ylabel('w_y')
 
@@ -123,6 +125,6 @@ plot(wx,  wy, 'r', 'LineWidth', 1)
 plot(wx', wy','r', 'LineWidth', 1)
 plot(wx,  wy, 'ok');
 axis([-1 1 -1 1])
-title('趌tima iteraci髇');
+title('脷ltima iteraci贸n');
 xlabel('w_x')
 ylabel('w_y')
